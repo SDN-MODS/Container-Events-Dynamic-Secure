@@ -183,7 +183,7 @@ class SDN_ContainerEventManager
             return;
         }
 
-        SDN_EventContainer_Blue blue = SDN_EventContainer_Blue.Cast(obj);
+        Land_ContainerLocked_Blue_DE blue = Land_ContainerLocked_Blue_DE.Cast(obj);
 
         if (blue)
         {
@@ -191,7 +191,7 @@ class SDN_ContainerEventManager
             return;
         }
 
-        SDN_EventContainer_Yellow yellow = SDN_EventContainer_Yellow.Cast(obj);
+        Land_ContainerLocked_Yellow_DE yellow = Land_ContainerLocked_Yellow_DE.Cast(obj);
 
         if (yellow)
         {
@@ -199,7 +199,7 @@ class SDN_ContainerEventManager
             return;
         }
 
-        SDN_EventContainer_Orange orange = SDN_EventContainer_Orange.Cast(obj);
+        Land_ContainerLocked_Orange_DE orange = Land_ContainerLocked_Orange_DE.Cast(obj);
 
         if (orange)
         {
@@ -207,7 +207,7 @@ class SDN_ContainerEventManager
             return;
         }
 
-        SDN_EventContainer_Red red = SDN_EventContainer_Red.Cast(obj);
+        Land_ContainerLocked_Red_DE red = Land_ContainerLocked_Red_DE.Cast(obj);
 
         if (red)
         {
@@ -1198,7 +1198,7 @@ class SDN_ContainerEventManager
         if (roll < currentChance)
         {
             tier = 1;
-            cType = "SDN_EventContainer_Blue";
+            cType = "Land_ContainerLocked_Blue_DE";
             kType = "ShippingContainerKeys_Blue";
         }
         else
@@ -1208,7 +1208,7 @@ class SDN_ContainerEventManager
             if (roll < currentChance)
             {
                 tier = 2;
-                cType = "SDN_EventContainer_Yellow";
+                cType = "Land_ContainerLocked_Yellow_DE";
                 kType = "ShippingContainerKeys_Yellow";
             }
             else
@@ -1218,13 +1218,13 @@ class SDN_ContainerEventManager
                 if (roll < currentChance)
                 {
                     tier = 3;
-                    cType = "SDN_EventContainer_Orange";
+                    cType = "Land_ContainerLocked_Orange_DE";
                     kType = "ShippingContainerKeys_Orange";
                 }
                 else
                 {
                     tier = 4;
-                    cType = "SDN_EventContainer_Red";
+                    cType = "Land_ContainerLocked_Red_DE";
                     kType = "ShippingContainerKeys_Red";
                 }
             }
@@ -1277,16 +1277,16 @@ class SDN_ContainerEventManager
                     Log(" Container found (Safe Start)! Reconnecting event at " + loc.Name);
                     
                     // Retrieve existing ID
-                    SDN_EventContainer_Blue blue = SDN_EventContainer_Blue.Cast(containerObj);
+                    Land_ContainerLocked_Blue_DE blue = Land_ContainerLocked_Blue_DE.Cast(containerObj);
                     if (blue) eventID = blue.GetSDNEventID();
                     
-                    SDN_EventContainer_Yellow yellow = SDN_EventContainer_Yellow.Cast(containerObj);
+                    Land_ContainerLocked_Yellow_DE yellow = Land_ContainerLocked_Yellow_DE.Cast(containerObj);
                     if (yellow) eventID = yellow.GetSDNEventID();
                     
-                    SDN_EventContainer_Orange orange = SDN_EventContainer_Orange.Cast(containerObj);
+                    Land_ContainerLocked_Orange_DE orange = Land_ContainerLocked_Orange_DE.Cast(containerObj);
                     if (orange) eventID = orange.GetSDNEventID();
                     
-                    SDN_EventContainer_Red red = SDN_EventContainer_Red.Cast(containerObj);
+                    Land_ContainerLocked_Red_DE red = Land_ContainerLocked_Red_DE.Cast(containerObj);
                     if (red) eventID = red.GetSDNEventID();
                     
                     break;

@@ -58,11 +58,11 @@ modded class ShippingContainerKeys_ColorBase
 // =========================================================
 // Precisamos manter individual pois eles não compartilham uma classe base acessível via script fácil.
 
-class SDN_EventContainer_Blue extends Land_ContainerLocked_Blue_DE
+modded class Land_ContainerLocked_Blue_DE
 {
     protected int m_SDN_EventID = 0;
 
-    void SDN_EventContainer_Blue()
+    void Land_ContainerLocked_Blue_DE()
     {
         RegisterNetSyncVariableInt("m_SDN_EventID");
     }
@@ -99,11 +99,11 @@ class SDN_EventContainer_Blue extends Land_ContainerLocked_Blue_DE
     }
 }
 
-class SDN_EventContainer_Yellow extends Land_ContainerLocked_Yellow_DE
+modded class Land_ContainerLocked_Yellow_DE
 {
     protected int m_SDN_EventID = 0;
 
-    void SDN_EventContainer_Yellow()
+    void Land_ContainerLocked_Yellow_DE()
     {
         RegisterNetSyncVariableInt("m_SDN_EventID");
     }
@@ -140,11 +140,11 @@ class SDN_EventContainer_Yellow extends Land_ContainerLocked_Yellow_DE
     }
 }
 
-class SDN_EventContainer_Orange extends Land_ContainerLocked_Orange_DE
+modded class Land_ContainerLocked_Orange_DE
 {
     protected int m_SDN_EventID = 0;
 
-    void SDN_EventContainer_Orange()
+    void Land_ContainerLocked_Orange_DE()
     {
         RegisterNetSyncVariableInt("m_SDN_EventID");
     }
@@ -181,11 +181,11 @@ class SDN_EventContainer_Orange extends Land_ContainerLocked_Orange_DE
     }
 }
 
-class SDN_EventContainer_Red extends Land_ContainerLocked_Red_DE
+modded class Land_ContainerLocked_Red_DE
 {
     protected int m_SDN_EventID = 0;
 
-    void SDN_EventContainer_Red()
+    void Land_ContainerLocked_Red_DE()
     {
         RegisterNetSyncVariableInt("m_SDN_EventID");
     }
@@ -305,16 +305,16 @@ modded class ActionUnlockShippingContainer
     // Função Auxiliar para pegar ID de qualquer container
     int GetContainerID(Object obj)
     {
-        SDN_EventContainer_Blue blue = SDN_EventContainer_Blue.Cast(obj);
+        Land_ContainerLocked_Blue_DE blue = Land_ContainerLocked_Blue_DE.Cast(obj);
         if (blue) return blue.GetSDNEventID();
 
-        SDN_EventContainer_Yellow yellow = SDN_EventContainer_Yellow.Cast(obj);
+        Land_ContainerLocked_Yellow_DE yellow = Land_ContainerLocked_Yellow_DE.Cast(obj);
         if (yellow) return yellow.GetSDNEventID();
 
-        SDN_EventContainer_Orange orange = SDN_EventContainer_Orange.Cast(obj);
+        Land_ContainerLocked_Orange_DE orange = Land_ContainerLocked_Orange_DE.Cast(obj);
         if (orange) return orange.GetSDNEventID();
 
-        SDN_EventContainer_Red red = SDN_EventContainer_Red.Cast(obj);
+        Land_ContainerLocked_Red_DE red = Land_ContainerLocked_Red_DE.Cast(obj);
         if (red) return red.GetSDNEventID();
 
         return 0;

@@ -63,60 +63,6 @@ class CfgVehicles
 	class HouseNoDestruct;
 	class Inventory_Base;
 	class SeaChest;
-	class Land_ContainerLocked_Blue_DE;
-	class Land_ContainerLocked_Yellow_DE;
-	class Land_ContainerLocked_Orange_DE;
-	class Land_ContainerLocked_Red_DE;
-
-	class SDN_EventContainer_Blue: Land_ContainerLocked_Blue_DE
-	{
-		scope=2;
-		hiddenSelections[]=
-		{
-			"zbytek"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"MyContainerEvent\data\SDN_retexture_containerlocked.paa"
-		};
-	};
-	class SDN_EventContainer_Yellow: Land_ContainerLocked_Yellow_DE
-	{
-		scope=2;
-		hiddenSelections[]=
-		{
-			"zbytek"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"MyContainerEvent\data\SDN_retexture_containerlocked.paa"
-		};
-	};
-	class SDN_EventContainer_Orange: Land_ContainerLocked_Orange_DE
-	{
-		scope=2;
-		hiddenSelections[]=
-		{
-			"zbytek"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"MyContainerEvent\data\SDN_retexture_containerlocked.paa"
-		};
-	};
-	class SDN_EventContainer_Red: Land_ContainerLocked_Red_DE
-	{
-		scope=2;
-		hiddenSelections[]=
-		{
-			"zbytek"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"MyContainerEvent\data\SDN_retexture_containerlocked.paa"
-		};
-	};
-
 	class BaseBuildingBase: Inventory_Base
 	{
 	};
