@@ -73,7 +73,7 @@ class CfgVehicles
 		scope=2;
 		hiddenSelections[]=
 		{
-			"Camo"
+			"zbytek"
 		};
 		hiddenSelectionsTextures[]=
 		{
@@ -85,7 +85,7 @@ class CfgVehicles
 		scope=2;
 		hiddenSelections[]=
 		{
-			"Camo"
+			"zbytek"
 		};
 		hiddenSelectionsTextures[]=
 		{
@@ -97,7 +97,7 @@ class CfgVehicles
 		scope=2;
 		hiddenSelections[]=
 		{
-			"Camo"
+			"zbytek"
 		};
 		hiddenSelectionsTextures[]=
 		{
@@ -109,7 +109,7 @@ class CfgVehicles
 		scope=2;
 		hiddenSelections[]=
 		{
-			"Camo"
+			"zbytek"
 		};
 		hiddenSelectionsTextures[]=
 		{

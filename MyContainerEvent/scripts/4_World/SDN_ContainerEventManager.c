@@ -761,7 +761,7 @@ class SDN_ContainerEventManager
                     {
                         string type = ent.GetType();
 
-                        if (type.Contains("Land_ContainerLocked") || type == lootName)
+                        if (type.Contains("Land_ContainerLocked") || type.Contains("SDN_EventContainer") || type == lootName)
                         {
                             float cleanupTime = m_Config.GhostCleanupTime * 60;
 
@@ -1318,7 +1318,7 @@ class SDN_ContainerEventManager
                 {
                     string entType = ent.GetType();
 
-                    if (entType.Contains("Land_ContainerLocked") || entType == lootObjName || entType == "Barrel_Red")
+                    if (entType.Contains("Land_ContainerLocked") || entType.Contains("SDN_EventContainer") || entType == lootObjName || entType == "Barrel_Red")
                     {
                         GetGame().ObjectDelete(ent);
                     }
