@@ -39,7 +39,14 @@ modded class PlayerBase
             }
 
             // Chamada com assinatura INVERTIDA (Tempo primeiro) baseada no seu mod de referência
+#ifdef VPPNOTIFICATIONS
             NotificationSystem.AddNotificationExtended(time, title, text, icon);
+#else
+            // Fallback for when NotificationSystem is not available.
+            // DayZ does not have a global UI broadcast natively out of the box in this exact format,
+            // so we fallback to nothing or a custom print if the user does not have the VPP mod installed.
+            Print("[SDN Event] " + title + " - " + text);
+#endif
         }
     }
 }

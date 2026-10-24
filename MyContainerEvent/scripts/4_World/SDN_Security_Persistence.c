@@ -43,8 +43,10 @@ modded class ShippingContainerKeys_ColorBase
         if (!super.OnStoreLoad(ctx, version)) 
             return false;
             
-        if (!ctx.Read(m_SDN_EventID)) 
-            return false;
+        if (!ctx.Read(m_SDN_EventID))
+        {
+            m_SDN_EventID = 0;
+        }
             
         SetSynchDirty();
         return true;
@@ -87,8 +89,10 @@ modded class Land_ContainerLocked_Blue_DE
         if (!super.OnStoreLoad(ctx, version)) 
             return false;
             
-        if (!ctx.Read(m_SDN_EventID)) 
-            return false;
+        if (!ctx.Read(m_SDN_EventID))
+        {
+            m_SDN_EventID = 0;
+        }
             
         SetSynchDirty();
         return true;
@@ -126,8 +130,10 @@ modded class Land_ContainerLocked_Yellow_DE
         if (!super.OnStoreLoad(ctx, version)) 
             return false;
             
-        if (!ctx.Read(m_SDN_EventID)) 
-            return false;
+        if (!ctx.Read(m_SDN_EventID))
+        {
+            m_SDN_EventID = 0;
+        }
             
         SetSynchDirty();
         return true;
@@ -165,8 +171,10 @@ modded class Land_ContainerLocked_Orange_DE
         if (!super.OnStoreLoad(ctx, version)) 
             return false;
             
-        if (!ctx.Read(m_SDN_EventID)) 
-            return false;
+        if (!ctx.Read(m_SDN_EventID))
+        {
+            m_SDN_EventID = 0;
+        }
             
         SetSynchDirty();
         return true;
@@ -204,8 +212,10 @@ modded class Land_ContainerLocked_Red_DE
         if (!super.OnStoreLoad(ctx, version)) 
             return false;
             
-        if (!ctx.Read(m_SDN_EventID)) 
-            return false;
+        if (!ctx.Read(m_SDN_EventID))
+        {
+            m_SDN_EventID = 0;
+        }
             
         SetSynchDirty();
         return true;
@@ -234,12 +244,10 @@ modded class ActionUnlockShippingContainer
             if (containerID > 0)
             {
                 int keyID = key.GetSDNEventID();
-                if (GetGame().IsServer())
+                // Check on both Client and Server because variables are network synced.
+                if (keyID != containerID)
                 {
-                    if (keyID != containerID) 
-                    {
-                        return false; // Bloqueia ação (opção não aparece)
-                    }
+                    return false; // Bloqueia ação (opção não aparece)
                 }
             }
             // -----------------
