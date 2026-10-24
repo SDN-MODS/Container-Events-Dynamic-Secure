@@ -183,7 +183,7 @@ class SDN_ContainerEventManager
             return;
         }
 
-        Land_ContainerLocked_Blue_DE blue = Land_ContainerLocked_Blue_DE.Cast(obj);
+        SDN_EventContainer_Blue blue = SDN_EventContainer_Blue.Cast(obj);
 
         if (blue)
         {
@@ -191,7 +191,7 @@ class SDN_ContainerEventManager
             return;
         }
 
-        Land_ContainerLocked_Yellow_DE yellow = Land_ContainerLocked_Yellow_DE.Cast(obj);
+        SDN_EventContainer_Yellow yellow = SDN_EventContainer_Yellow.Cast(obj);
 
         if (yellow)
         {
@@ -199,7 +199,7 @@ class SDN_ContainerEventManager
             return;
         }
 
-        Land_ContainerLocked_Orange_DE orange = Land_ContainerLocked_Orange_DE.Cast(obj);
+        SDN_EventContainer_Orange orange = SDN_EventContainer_Orange.Cast(obj);
 
         if (orange)
         {
@@ -207,7 +207,7 @@ class SDN_ContainerEventManager
             return;
         }
 
-        Land_ContainerLocked_Red_DE red = Land_ContainerLocked_Red_DE.Cast(obj);
+        SDN_EventContainer_Red red = SDN_EventContainer_Red.Cast(obj);
 
         if (red)
         {
@@ -717,19 +717,13 @@ class SDN_ContainerEventManager
             }
 
             // Protect player's backpacks, clothing, and other important items from being deleted.
-            // Only delete trash items (like ruined items, empty cans, or specific event items).
-            // For now, let's just avoid deleting items with an active lifetime or attachments,
-            // or simply remove the overly aggressive cleanup to prevent deleting player loot.
-            // A safer approach is to only delete specific event-related items (like smoke grenades or dead bodies).
-            if (ent.IsInherited(ItemBase))
-            {
-                string type = ent.GetType();
+            // Only delete specific event-related items (like smoke grenades or dead bodies).
+            string type = ent.GetType();
 
-                if (type.Contains("M18SmokeGrenade") || type.Contains("ZmbM_") || type.Contains("ZmbF_"))
-                {
-                    GetGame().ObjectDelete(ent);
-                    deletedCount++;
-                }
+            if (type.Contains("M18SmokeGrenade") || ent.IsInherited(DayZInfected))
+            {
+                GetGame().ObjectDelete(ent);
+                deletedCount++;
             }
         }
     }
@@ -1204,7 +1198,7 @@ class SDN_ContainerEventManager
         if (roll < currentChance)
         {
             tier = 1;
-            cType = "Land_ContainerLocked_Blue_DE";
+            cType = "SDN_EventContainer_Blue";
             kType = "ShippingContainerKeys_Blue";
         }
         else
@@ -1214,7 +1208,7 @@ class SDN_ContainerEventManager
             if (roll < currentChance)
             {
                 tier = 2;
-                cType = "Land_ContainerLocked_Yellow_DE";
+                cType = "SDN_EventContainer_Yellow";
                 kType = "ShippingContainerKeys_Yellow";
             }
             else
@@ -1224,13 +1218,13 @@ class SDN_ContainerEventManager
                 if (roll < currentChance)
                 {
                     tier = 3;
-                    cType = "Land_ContainerLocked_Orange_DE";
+                    cType = "SDN_EventContainer_Orange";
                     kType = "ShippingContainerKeys_Orange";
                 }
                 else
                 {
                     tier = 4;
-                    cType = "Land_ContainerLocked_Red_DE";
+                    cType = "SDN_EventContainer_Red";
                     kType = "ShippingContainerKeys_Red";
                 }
             }
@@ -1283,16 +1277,16 @@ class SDN_ContainerEventManager
                     Log(" Container found (Safe Start)! Reconnecting event at " + loc.Name);
                     
                     // Retrieve existing ID
-                    Land_ContainerLocked_Blue_DE blue = Land_ContainerLocked_Blue_DE.Cast(containerObj);
+                    SDN_EventContainer_Blue blue = SDN_EventContainer_Blue.Cast(containerObj);
                     if (blue) eventID = blue.GetSDNEventID();
                     
-                    Land_ContainerLocked_Yellow_DE yellow = Land_ContainerLocked_Yellow_DE.Cast(containerObj);
+                    SDN_EventContainer_Yellow yellow = SDN_EventContainer_Yellow.Cast(containerObj);
                     if (yellow) eventID = yellow.GetSDNEventID();
                     
-                    Land_ContainerLocked_Orange_DE orange = Land_ContainerLocked_Orange_DE.Cast(containerObj);
+                    SDN_EventContainer_Orange orange = SDN_EventContainer_Orange.Cast(containerObj);
                     if (orange) eventID = orange.GetSDNEventID();
                     
-                    Land_ContainerLocked_Red_DE red = Land_ContainerLocked_Red_DE.Cast(containerObj);
+                    SDN_EventContainer_Red red = SDN_EventContainer_Red.Cast(containerObj);
                     if (red) eventID = red.GetSDNEventID();
                     
                     break;

@@ -15,21 +15,21 @@ modded class ShippingContainerKeys_ColorBase
 {
     protected int m_SDN_EventID = 0;
 
-    void ShippingContainerKeys_ColorBase() 
-    { 
-        RegisterNetSyncVariableInt("m_SDN_EventID"); 
+    void ShippingContainerKeys_ColorBase()
+    {
+        RegisterNetSyncVariableInt("m_SDN_EventID");
     }
 
-    void SetSDNEventID(int id) 
-    { 
-        m_SDN_EventID = id; 
-        SetSynchDirty(); 
+    void SetSDNEventID(int id)
+    {
+        m_SDN_EventID = id;
+        SetSynchDirty();
         // Print("[SDN Key] ID Set: " + id);
     }
 
-    int GetSDNEventID() 
-    { 
-        return m_SDN_EventID; 
+    int GetSDNEventID()
+    {
+        return m_SDN_EventID;
     }
 
     override void OnStoreSave(ParamsWriteContext ctx)
@@ -40,14 +40,14 @@ modded class ShippingContainerKeys_ColorBase
 
     override bool OnStoreLoad(ParamsReadContext ctx, int version)
     {
-        if (!super.OnStoreLoad(ctx, version)) 
+        if (!super.OnStoreLoad(ctx, version))
             return false;
-            
+
         if (!ctx.Read(m_SDN_EventID))
         {
             m_SDN_EventID = 0;
         }
-            
+
         SetSynchDirty();
         return true;
     }
@@ -58,24 +58,24 @@ modded class ShippingContainerKeys_ColorBase
 // =========================================================
 // Precisamos manter individual pois eles não compartilham uma classe base acessível via script fácil.
 
-modded class Land_ContainerLocked_Blue_DE
+class SDN_EventContainer_Blue extends Land_ContainerLocked_Blue_DE
 {
     protected int m_SDN_EventID = 0;
 
-    void Land_ContainerLocked_Blue_DE() 
-    { 
-        RegisterNetSyncVariableInt("m_SDN_EventID"); 
+    void SDN_EventContainer_Blue()
+    {
+        RegisterNetSyncVariableInt("m_SDN_EventID");
     }
 
-    void SetSDNEventID(int id) 
-    { 
-        m_SDN_EventID = id; 
-        SetSynchDirty(); 
+    void SetSDNEventID(int id)
+    {
+        m_SDN_EventID = id;
+        SetSynchDirty();
     }
 
-    int GetSDNEventID() 
-    { 
-        return m_SDN_EventID; 
+    int GetSDNEventID()
+    {
+        return m_SDN_EventID;
     }
 
     override void OnStoreSave(ParamsWriteContext ctx)
@@ -86,37 +86,37 @@ modded class Land_ContainerLocked_Blue_DE
 
     override bool OnStoreLoad(ParamsReadContext ctx, int version)
     {
-        if (!super.OnStoreLoad(ctx, version)) 
+        if (!super.OnStoreLoad(ctx, version))
             return false;
-            
+
         if (!ctx.Read(m_SDN_EventID))
         {
             m_SDN_EventID = 0;
         }
-            
+
         SetSynchDirty();
         return true;
     }
 }
 
-modded class Land_ContainerLocked_Yellow_DE
+class SDN_EventContainer_Yellow extends Land_ContainerLocked_Yellow_DE
 {
     protected int m_SDN_EventID = 0;
 
-    void Land_ContainerLocked_Yellow_DE() 
-    { 
-        RegisterNetSyncVariableInt("m_SDN_EventID"); 
+    void SDN_EventContainer_Yellow()
+    {
+        RegisterNetSyncVariableInt("m_SDN_EventID");
     }
 
-    void SetSDNEventID(int id) 
-    { 
-        m_SDN_EventID = id; 
-        SetSynchDirty(); 
+    void SetSDNEventID(int id)
+    {
+        m_SDN_EventID = id;
+        SetSynchDirty();
     }
 
-    int GetSDNEventID() 
-    { 
-        return m_SDN_EventID; 
+    int GetSDNEventID()
+    {
+        return m_SDN_EventID;
     }
 
     override void OnStoreSave(ParamsWriteContext ctx)
@@ -127,37 +127,37 @@ modded class Land_ContainerLocked_Yellow_DE
 
     override bool OnStoreLoad(ParamsReadContext ctx, int version)
     {
-        if (!super.OnStoreLoad(ctx, version)) 
+        if (!super.OnStoreLoad(ctx, version))
             return false;
-            
+
         if (!ctx.Read(m_SDN_EventID))
         {
             m_SDN_EventID = 0;
         }
-            
+
         SetSynchDirty();
         return true;
     }
 }
 
-modded class Land_ContainerLocked_Orange_DE
+class SDN_EventContainer_Orange extends Land_ContainerLocked_Orange_DE
 {
     protected int m_SDN_EventID = 0;
 
-    void Land_ContainerLocked_Orange_DE() 
-    { 
-        RegisterNetSyncVariableInt("m_SDN_EventID"); 
+    void SDN_EventContainer_Orange()
+    {
+        RegisterNetSyncVariableInt("m_SDN_EventID");
     }
 
-    void SetSDNEventID(int id) 
-    { 
-        m_SDN_EventID = id; 
-        SetSynchDirty(); 
+    void SetSDNEventID(int id)
+    {
+        m_SDN_EventID = id;
+        SetSynchDirty();
     }
 
-    int GetSDNEventID() 
-    { 
-        return m_SDN_EventID; 
+    int GetSDNEventID()
+    {
+        return m_SDN_EventID;
     }
 
     override void OnStoreSave(ParamsWriteContext ctx)
@@ -168,37 +168,37 @@ modded class Land_ContainerLocked_Orange_DE
 
     override bool OnStoreLoad(ParamsReadContext ctx, int version)
     {
-        if (!super.OnStoreLoad(ctx, version)) 
+        if (!super.OnStoreLoad(ctx, version))
             return false;
-            
+
         if (!ctx.Read(m_SDN_EventID))
         {
             m_SDN_EventID = 0;
         }
-            
+
         SetSynchDirty();
         return true;
     }
 }
 
-modded class Land_ContainerLocked_Red_DE
+class SDN_EventContainer_Red extends Land_ContainerLocked_Red_DE
 {
     protected int m_SDN_EventID = 0;
 
-    void Land_ContainerLocked_Red_DE() 
-    { 
-        RegisterNetSyncVariableInt("m_SDN_EventID"); 
+    void SDN_EventContainer_Red()
+    {
+        RegisterNetSyncVariableInt("m_SDN_EventID");
     }
 
-    void SetSDNEventID(int id) 
-    { 
-        m_SDN_EventID = id; 
-        SetSynchDirty(); 
+    void SetSDNEventID(int id)
+    {
+        m_SDN_EventID = id;
+        SetSynchDirty();
     }
 
-    int GetSDNEventID() 
-    { 
-        return m_SDN_EventID; 
+    int GetSDNEventID()
+    {
+        return m_SDN_EventID;
     }
 
     override void OnStoreSave(ParamsWriteContext ctx)
@@ -209,14 +209,14 @@ modded class Land_ContainerLocked_Red_DE
 
     override bool OnStoreLoad(ParamsReadContext ctx, int version)
     {
-        if (!super.OnStoreLoad(ctx, version)) 
+        if (!super.OnStoreLoad(ctx, version))
             return false;
-            
+
         if (!ctx.Read(m_SDN_EventID))
         {
             m_SDN_EventID = 0;
         }
-            
+
         SetSynchDirty();
         return true;
     }
@@ -239,7 +239,7 @@ modded class ActionUnlockShippingContainer
         {
             // --- SDN CHECK ---
             int containerID = GetContainerID(shipCont);
-            
+
             // Se o container tem ID (é protegido), verificamos a chave
             if (containerID > 0)
             {
@@ -268,7 +268,7 @@ modded class ActionUnlockShippingContainer
         ShippingContainerKeys_ColorBase key = ShippingContainerKeys_ColorBase.Cast(action_data.m_MainItem);
         ContainerLockedBase shipCont = ContainerLockedBase.Cast(action_data.m_Target.GetObject());
 
-        if (!shipCont || !key) 
+        if (!shipCont || !key)
             return;
 
         // --- SDN CHECK FINAL ---
@@ -296,7 +296,7 @@ modded class ActionUnlockShippingContainer
 
         // Se passou, destranca
         UnlockDoor(action_data.m_Target);
-        
+
         // Destrói a chave
         key.SetHealth(0);
         Print("[SDN DEBUG] Sucesso. Chave destruída.");
@@ -305,18 +305,18 @@ modded class ActionUnlockShippingContainer
     // Função Auxiliar para pegar ID de qualquer container
     int GetContainerID(Object obj)
     {
-        Land_ContainerLocked_Blue_DE blue = Land_ContainerLocked_Blue_DE.Cast(obj);
+        SDN_EventContainer_Blue blue = SDN_EventContainer_Blue.Cast(obj);
         if (blue) return blue.GetSDNEventID();
-        
-        Land_ContainerLocked_Yellow_DE yellow = Land_ContainerLocked_Yellow_DE.Cast(obj);
+
+        SDN_EventContainer_Yellow yellow = SDN_EventContainer_Yellow.Cast(obj);
         if (yellow) return yellow.GetSDNEventID();
-        
-        Land_ContainerLocked_Orange_DE orange = Land_ContainerLocked_Orange_DE.Cast(obj);
+
+        SDN_EventContainer_Orange orange = SDN_EventContainer_Orange.Cast(obj);
         if (orange) return orange.GetSDNEventID();
-        
-        Land_ContainerLocked_Red_DE red = Land_ContainerLocked_Red_DE.Cast(obj);
+
+        SDN_EventContainer_Red red = SDN_EventContainer_Red.Cast(obj);
         if (red) return red.GetSDNEventID();
-        
+
         return 0;
     }
 
