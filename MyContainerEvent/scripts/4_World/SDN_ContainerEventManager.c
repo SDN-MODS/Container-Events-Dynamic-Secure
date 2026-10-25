@@ -1,3 +1,18 @@
+
+class SDN_SceneObjectTemplate
+{
+    string ClassName;
+    vector OffsetPos;
+    vector OffsetOri;
+
+    void SDN_SceneObjectTemplate(string cls, vector pos, vector ori)
+    {
+        ClassName = cls;
+        OffsetPos = pos;
+        OffsetOri = ori;
+    }
+}
+
 /*
     ActiveEventInstance.c
 */
@@ -23,6 +38,7 @@ class ActiveEventInstance
     int Tier;
 
     ref array<EntityAI> Zombies;
+    ref array<Object> SceneObjects;
     bool IsActive;
     bool IsCompleted;
     float EventTimer;
@@ -32,6 +48,7 @@ class ActiveEventInstance
     void ActiveEventInstance()
     {
         Zombies = new array<EntityAI>;
+        SceneObjects = new array<Object>;
         IsActive = false;
         IsCompleted = false;
         EventTimer = 0;
@@ -58,6 +75,14 @@ class ActiveEventInstance
             }
         }
         Zombies.Clear();
+        if (SceneObjects)
+        {
+            foreach (Object sc : SceneObjects)
+            {
+                if (sc) GetGame().ObjectDelete(sc);
+            }
+        }
+        SceneObjects.Clear();
     }
 }/*
     Arquivo: SDN_ContainerEventManager.c
@@ -89,6 +114,7 @@ class SDN_ContainerEventManager
 
     protected ref array<string> m_HistoryLocations;
     protected ref array<string> m_CurrentWaveLocations;
+    protected ref array<ref SDN_SceneObjectTemplate> m_SceneTemplate;
     protected ref array<vector> m_GhostLocations;
 
     // [SDN] Nova estrutura de pastas padronizada
@@ -126,6 +152,7 @@ class SDN_ContainerEventManager
         }
 
         LoadConfig();
+        InitSceneTemplate();
         Log("Mod loaded. Waiting for server stabilization (Safe Start)...");
     }
 
@@ -739,7 +766,7 @@ class SDN_ContainerEventManager
 
             if (lootName == "")
             {
-                lootName = "CONTAINER_Chest";
+                lootName = "StorageBox_Wooden";
             }
 
             int cleaned = 0;
@@ -901,6 +928,94 @@ class SDN_ContainerEventManager
     }
 
     // --- CONFIGURAÇÃO E ESTADO ---
+
+
+    void InitSceneTemplate()
+    {
+        m_SceneTemplate = new array<ref SDN_SceneObjectTemplate>;
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/556_20roundbox.p3d", "-7.6450 -2.3608 1.4844", "2.0908 1.5708 -1.5708"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/9mm_looserounds.p3d", "-0.2886 -1.0723 2.4385", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/9mm_25rnd_box.p3d", "-0.1782 -1.0216 1.6416", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/556_looserounds.p3d", "0.1162 -1.0768 0.6230", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/00buck_10roundbox.p3d", "-0.8823 0.1916 2.5762", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/308win_looserounds.p3d", "0.4888 -1.0644 1.8955", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/762_20roundbox.p3d", "0.0625 -1.0641 1.6025", "-2.8972 1.5708 -1.5708"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/40mm_grenade.p3d", "-0.0215 -1.0314 0.6670", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/556_20roundbox.p3d", "-0.0410 -1.0829 1.4170", "-2.7576 1.5708 -1.5708"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/308win_looserounds.p3d", "-0.6157 0.1428 2.5332", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/556_looserounds.p3d", "0.1152 -1.0768 0.6797", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/9x39_looserounds.p3d", "-0.8311 -1.0536 1.7031", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/308win_looserounds.p3d", "-0.1079 -1.0644 2.2285", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/9x39_looserounds.p3d", "-0.2632 -1.0769 1.5674", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/9mm_25rnd_box.p3d", "-0.5088 -1.0262 1.0615", "0.3142 0.6807 0.0873"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/556_20roundbox.p3d", "0.0542 -1.0947 1.7119", "-2.9845 1.5708 -1.5708"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/762_looserounds.p3d", "-0.7441 0.1415 2.4336", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/12ga_00buck.p3d", "-0.7827 0.1453 2.6211", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/762_20roundbox.p3d", "-0.4814 0.1798 2.5645", "-2.8972 1.5708 -1.5708"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/12ga_00buck.p3d", "-0.5659 0.1486 2.6279", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/gear/tools/shippingcontainerkeys.p3d", "23.0205 -2.4263 11.4463", "-2.5339 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/structures_bliss/underground/storage/proxy/ammoboxes_single.p3d", "0.2471 -1.0944 -2.0195", "1.5650 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/structures_bliss/underground/storage/proxy/ammoboxes_single.p3d", "-0.5879 -0.4016 -1.9951", "1.5542 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/structures_bliss/underground/storage/proxy/ammoboxes_single.p3d", "-0.6118 0.1291 -0.2764", "-1.5529 0.0000 0.6981"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/structures/wrecks/vehicles/wreck_decal_small2.p3d", "1.3638 3.4179 -8.0234", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/structures/wrecks/vehicles/wreck_decal_small1_nolc.p3d", "3.5381 -2.4634 -10.3252", "0.3142 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/structures/wrecks/vehicles/wreck_decal_small1_nolc.p3d", "3.8403 -2.4730 -4.0986", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/structures/wrecks/vehicles/wreck_uaz.p3d", "3.7993 -2.5396 -3.5098", "0.0524 0.1920 -3.1055"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/vehicles/wheeled/truck_01/proxy/truck_01_wheel_ruined.p3d", "0.2261 -2.3371 5.0957", "0.0524 0.0000 1.6406"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/vehicles/wheeled/truck_01/proxy/truck_01_wheeldouble_ruined.p3d", "-0.2925 -2.1839 4.5801", "2.3717 -0.0349 0.9948"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/vehicles/wheeled/offroad_02/proxy/offroad_02_wheel_destroyed.p3d", "2.4443 -2.0943 3.7900", "-0.3142 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/structures_takistan/wrecks/wheeled/wreck_truck02_green.p3d", "0.4243 -2.4564 -5.1367", "-1.7961 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/structures_bliss/underground/storage/proxy/ammoboxes_single.p3d", "-0.4463 0.4448 -2.1064", "1.5542 -1.0472 0.0175"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StorageBox_Wooden", "-0.5786 -1.0843 -0.0459", "-90.9490 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SDN_P_fire_tirepile", "1.2583 -0.6232 -8.0576", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SDN_P_smoke_bonfire", "2.5015 -1.4990 5.2900", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SDN_P_fire_medium_oven_01", "3.4653 -1.4196 -5.0439", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SDN_P_smoke_small_barrel_01", "3.4453 -1.5038 -5.0186", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/structures/furniture/cases/paperbox/paperbox_01_small_closed.p3d", "-0.6685 -1.0966 2.5312", "0.0054 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SDN_P_fire_small_oven_01", "3.6680 -1.6163 -8.2041", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SDN_P_smoke_medium_house_01", "3.6724 -1.6200 -8.2061", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/structures/wrecks/vehicles/wreck_decal_small2_nolc.p3d", "1.0137 -2.4628 4.4160", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/firearms/svd/svd_old.p3d", "0.3330 -0.7246 1.4209", "0.0000 -0.0000 1.5708"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/firearms/svd/svd_old.p3d", "0.6025 -0.7246 1.5176", "0.0000 -0.0000 1.5708"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/firearms/m14/m14.p3d", "0.8784 -0.6484 1.7168", "0.0000 -0.0000 1.5708"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/firearms/svd/svd.p3d", "0.3242 -0.7099 1.5137", "0.0000 -0.0000 1.5708"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/firearms/m14/m14.p3d", "0.8667 -0.6484 1.6133", "0.0000 -0.0000 1.5708"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/firearms/m14/m14.p3d", "0.8823 -0.6484 1.5127", "0.0000 -0.0000 1.5708"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/firearms/svd/svd.p3d", "0.5938 -0.7099 1.6104", "0.0000 -0.0000 1.5708"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/firearms/svd/svd.p3d", "0.3311 -0.7099 1.6182", "0.0000 -0.0000 1.5708"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/firearms/svd/svd.p3d", "0.6006 -0.7099 1.7148", "0.0000 -0.0000 1.5708"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/structures/military/misc/misc_gunrack.p3d", "0.6514 -1.1127 1.8174", "0.0000 -0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/firearms/sv98/sv98.p3d", "0.6133 -0.7079 2.0068", "-0.0407 0.0000 1.5708"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/firearms/sv98/sv98.p3d", "0.8911 -0.7079 2.0117", "-0.0407 -0.0000 1.5708"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/firearms/sv98/sv98.p3d", "0.6235 -0.7079 2.1094", "-0.0407 0.0000 1.5708"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/firearms/sv98/sv98.p3d", "0.9014 -0.7079 2.1143", "-0.0407 0.0000 1.5708"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/structures_takistan/wrecks/wheeled/wreck_pickup01_armed_tk.p3d", "2.0645 -1.4321 -9.8037", "-2.7287 -0.0307 -1.8569"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/firearms/sv98/sv98.p3d", "0.6323 -0.7079 2.2168", "-0.0407 0.0000 1.5708"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/structures_takistan/wrecks/wheeled/wreck_lr_armed_tk.p3d", "2.3350 -2.5510 5.4775", "-0.4712 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/762x39_looserounds.p3d", "0.2144 -1.5194 0.7852", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/556_looserounds.p3d", "0.1343 -1.0932 1.0137", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/545x39_20roundbox.p3d", "-0.4419 0.1510 2.5918", "-3.0172 1.5705 3.1416"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/545x39_20roundbox.p3d", "-0.6450 0.1457 2.3926", "-3.0172 1.5708 3.1416"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/545x39_20roundbox.p3d", "-0.7417 -1.0363 1.7998", "0.1244 1.5708 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/structures_bliss/underground/storage/proxy/ammoboxes_single.p3d", "-0.5825 -0.7561 -1.9932", "1.5542 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/structures_bliss/underground/storage/proxy/ammoboxes_single.p3d", "-0.6064 -1.1107 -1.9648", "1.5923 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/firearms/sv98/sv98.p3d", "0.9102 -0.7079 2.2227", "-0.0407 0.0000 1.5708"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/structures_takistan/wrecks/wheeled/wreck_trailer_single_container.p3d", "-0.0352 -2.4557 -0.8828", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/structures_bliss/underground/storage/proxy/ammoboxes_single.p3d", "-0.5903 -0.0471 -2.1064", "1.5542 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/structures/furniture/cases/paperbox/paperbox_01_small_closed.p3d", "-0.6685 -0.6848 2.5273", "0.0054 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/762x39_20roundbox.p3d", "3.3145 -2.3037 5.7617", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/762x39_20roundbox.p3d", "-0.6567 -0.2312 0.4727", "-0.9810 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/762x39_20roundbox.p3d", "-0.4810 -0.2312 0.6221", "-0.9810 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/762x39_20roundbox.p3d", "-0.1470 -1.0396 1.5684", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/762_20roundbox.p3d", "-0.4233 -0.2779 0.7617", "2.1606 1.5708 -1.5708"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/00buck_10roundbox.p3d", "-0.7412 -0.2327 0.4678", "-0.9810 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/762_looserounds.p3d", "-0.5435 -0.2821 0.6621", "-0.9810 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/structures/furniture/cases/paperbox/paperbox_01_small_closed.p3d", "-0.6738 -0.2730 2.5264", "0.0054 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("dz/weapons/ammunition/00buck_10roundbox.p3d", "-0.8433 0.1923 2.5020", "1.2401 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("FireplaceLight", "0.5474 0.0479 -8.5342", "0.0000 0.0000 -0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("FireplaceLight", "3.3716 -1.3767 -5.0322", "0.0000 0.0000 -0.0000"));
+
+    }
 
     void LoadConfig()
     {
@@ -1305,7 +1420,7 @@ class SDN_ContainerEventManager
 
             if (lootObjName == "")
             {
-                lootObjName = "CONTAINER_Chest";
+                lootObjName = "StorageBox_Wooden";
             }
 
             GetGame().GetObjectsAtPosition(spawnPos, 15.0, objects_nearby, proxy_cargos);
@@ -1350,7 +1465,7 @@ class SDN_ContainerEventManager
 
         if (chestName == "")
         {
-            chestName = "CONTAINER_Chest";
+            chestName = "StorageBox_Wooden";
         }
 
         if (isRestoration)
@@ -1407,6 +1522,7 @@ class SDN_ContainerEventManager
         }
 
         SpawnZombies(newEvent, kType, eventID);
+        if (!isRestoration) SpawnSceneObjects(newEvent, spawnPos, containerObj.GetOrientation());
 
         m_ActiveEvents.Insert(newEvent);
 
@@ -1416,6 +1532,58 @@ class SDN_ContainerEventManager
         }
 
         Log("Event Active and Linked at " + loc.Name + " [ID: " + eventID + "]");
+    }
+
+
+    void SpawnSceneObjects(ActiveEventInstance evt, vector basePos, vector baseOri)
+    {
+        if (!m_SceneTemplate) return;
+
+        // DayZ uses Yaw Pitch Roll. The math for orienting is complex natively,
+        // so we can build a matrix if needed. But let's keep it simple:
+        // if baseOri is [0,0,0], we just add the offsets. If random rotation is added later,
+        // we'd need quaternion math. For now, assuming base orientation is 0,0,0 or handling simple Y-axis yaw.
+
+        // Fix backwards DayZ coordinate math: rotate clockwise
+        float yaw = -baseOri[0] * Math.DEG2RAD;
+        float cosY = Math.Cos(yaw);
+        float sinY = Math.Sin(yaw);
+
+        foreach (SDN_SceneObjectTemplate tmpl : m_SceneTemplate)
+        {
+            vector localPos = tmpl.OffsetPos;
+            vector worldPos = "0 0 0";
+
+            // Apply 2D Rotation (Yaw) correctly for DayZ Engine
+            worldPos[0] = basePos[0] + (localPos[0] * cosY - localPos[2] * sinY);
+            worldPos[1] = basePos[1] + localPos[1];
+            worldPos[2] = basePos[2] + (localPos[0] * sinY + localPos[2] * cosY);
+
+            vector worldOri = tmpl.OffsetOri;
+            worldOri[0] = worldOri[0] + baseOri[0];
+
+            Object obj = null;
+            if (tmpl.ClassName.Contains(".p3d"))
+            {
+                obj = GetGame().CreateObjectEx(tmpl.ClassName, worldPos, ECE_SETUP | ECE_CREATEPHYSICS | ECE_NOLIFETIME);
+            }
+            else
+            {
+                obj = GetGame().CreateObject(tmpl.ClassName, worldPos, false, true);
+            }
+
+            if (obj)
+            {
+                obj.SetPosition(worldPos);
+                obj.SetOrientation(worldOri);
+
+                // Align to terrain properly if needed (some objects like cars shouldn't snap strictly,
+                // but let's let DayZ physics handle it if it drops, or force it)
+                // obj.PlaceOnSurface();
+
+                evt.SceneObjects.Insert(obj);
+            }
+        }
     }
 
     void CheckActiveEvents(float delta)
