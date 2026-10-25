@@ -58,6 +58,48 @@ modded class ShippingContainerKeys_ColorBase
 // =========================================================
 // Precisamos manter individual pois eles não compartilham uma classe base acessível via script fácil.
 
+
+modded class SDN_Test_ContainerBase
+{
+    protected int m_SDN_EventID = 0;
+
+    void SDN_Test_ContainerBase()
+    {
+        RegisterNetSyncVariableInt("m_SDN_EventID");
+    }
+
+    void SetSDNEventID(int id)
+    {
+        m_SDN_EventID = id;
+        SetSynchDirty();
+    }
+
+    int GetSDNEventID()
+    {
+        return m_SDN_EventID;
+    }
+
+    override void OnStoreSave(ParamsWriteContext ctx)
+    {
+        super.OnStoreSave(ctx);
+        ctx.Write(m_SDN_EventID);
+    }
+
+    override bool OnStoreLoad(ParamsReadContext ctx, int version)
+    {
+        if (!super.OnStoreLoad(ctx, version))
+            return false;
+
+        if (!ctx.Read(m_SDN_EventID))
+        {
+            m_SDN_EventID = 0;
+        }
+
+        SetSynchDirty();
+        return true;
+    }
+}
+
 modded class Land_ContainerLocked_Blue_DE
 {
     protected int m_SDN_EventID = 0;
@@ -305,6 +347,9 @@ modded class ActionUnlockShippingContainer
     // Função Auxiliar para pegar ID de qualquer container
     int GetContainerID(Object obj)
     {
+        SDN_Test_ContainerBase testCont = SDN_Test_ContainerBase.Cast(obj);
+        if (testCont) return testCont.GetSDNEventID();
+
         Land_ContainerLocked_Blue_DE blue = Land_ContainerLocked_Blue_DE.Cast(obj);
         if (blue) return blue.GetSDNEventID();
 

@@ -183,6 +183,13 @@ class SDN_ContainerEventManager
             return;
         }
 
+        SDN_Test_ContainerBase testCont = SDN_Test_ContainerBase.Cast(obj);
+        if (testCont)
+        {
+            testCont.SetSDNEventID(id);
+            return;
+        }
+
         Land_ContainerLocked_Blue_DE blue = Land_ContainerLocked_Blue_DE.Cast(obj);
 
         if (blue)
@@ -761,7 +768,7 @@ class SDN_ContainerEventManager
                     {
                         string type = ent.GetType();
 
-                        if (type.Contains("Land_ContainerLocked") || type.Contains("SDN_EventContainer") || type == lootName)
+                        if (type.Contains("Land_ContainerLocked") || type.Contains("SDN_Test_ContainerBase") || type == lootName)
                         {
                             float cleanupTime = m_Config.GhostCleanupTime * 60;
 
@@ -1198,7 +1205,7 @@ class SDN_ContainerEventManager
         if (roll < currentChance)
         {
             tier = 1;
-            cType = "Land_ContainerLocked_Blue_DE";
+            cType = "SDN_Test_ContainerBase";
             kType = "ShippingContainerKeys_Blue";
         }
         else
@@ -1208,7 +1215,7 @@ class SDN_ContainerEventManager
             if (roll < currentChance)
             {
                 tier = 2;
-                cType = "Land_ContainerLocked_Yellow_DE";
+                cType = "SDN_Test_ContainerBase";
                 kType = "ShippingContainerKeys_Yellow";
             }
             else
@@ -1218,13 +1225,13 @@ class SDN_ContainerEventManager
                 if (roll < currentChance)
                 {
                     tier = 3;
-                    cType = "Land_ContainerLocked_Orange_DE";
+                    cType = "SDN_Test_ContainerBase";
                     kType = "ShippingContainerKeys_Orange";
                 }
                 else
                 {
                     tier = 4;
-                    cType = "Land_ContainerLocked_Red_DE";
+                    cType = "SDN_Test_ContainerBase";
                     kType = "ShippingContainerKeys_Red";
                 }
             }
@@ -1277,6 +1284,9 @@ class SDN_ContainerEventManager
                     Log(" Container found (Safe Start)! Reconnecting event at " + loc.Name);
                     
                     // Retrieve existing ID
+                    SDN_Test_ContainerBase testCont = SDN_Test_ContainerBase.Cast(containerObj);
+                    if (testCont) eventID = testCont.GetSDNEventID();
+
                     Land_ContainerLocked_Blue_DE blue = Land_ContainerLocked_Blue_DE.Cast(containerObj);
                     if (blue) eventID = blue.GetSDNEventID();
                     
@@ -1318,7 +1328,7 @@ class SDN_ContainerEventManager
                 {
                     string entType = ent.GetType();
 
-                    if (entType.Contains("Land_ContainerLocked") || entType.Contains("SDN_EventContainer") || entType == lootObjName || entType == "Barrel_Red")
+                    if (entType.Contains("Land_ContainerLocked") || entType.Contains("SDN_Test_ContainerBase") || entType == lootObjName || entType == "Barrel_Red")
                     {
                         GetGame().ObjectDelete(ent);
                     }

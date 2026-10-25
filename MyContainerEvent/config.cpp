@@ -63,6 +63,21 @@ class CfgVehicles
 	class HouseNoDestruct;
 	class Inventory_Base;
 	class SeaChest;
+	class ContainerLockedBase;
+
+	class SDN_Test_ContainerBase: ContainerLockedBase
+	{
+		scope=2;
+		hiddenSelections[]=
+		{
+			"zbytek"
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"MyContainerEvent\data\SDN_retexture_containerlocked.paa"
+		};
+	};
+
 	class BaseBuildingBase: Inventory_Base
 	{
 	};
