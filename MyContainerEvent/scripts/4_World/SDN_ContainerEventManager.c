@@ -1495,25 +1495,27 @@ class SDN_ContainerEventManager
         {
             // Spawn the loot crate based on the user's exact Editor layout offset
 // Offset extracted directly from the XML exported by the DayZ Editor
+            // The DayZ editor sets the container origin in the center, but in-game it might be different.
+            // We use ModelToWorld which is foolproof for local offsets.
             vector crateOffsetPos = "-0.5798 -1.0846 -0.0486";
-            vector crateOffsetOri = "0 0 0";
+            vector crateOffsetOri = "-90.9489 0 0";
 
-            vector transform[4];
-            Math3D.YawPitchRollMatrix(containerObj.GetOrientation(), transform);
-            transform[3] = containerObj.GetPosition(); // FIX: Use container center, not ground level
+            // Convert local offset to world space perfectly natively
+            vector crateWorldPos = containerObj.ModelToWorld(crateOffsetPos);
 
-            vector crateWorldPos = crateOffsetPos.Multiply4(transform);
-
-            // Remove the SurfaceY clamp so the crate perfectly aligns inside the container at the correct height
             vector crateWorldOri = containerObj.GetOrientation();
             crateWorldOri[0] = crateWorldOri[0] + crateOffsetOri[0];
 
-            crate = EntityAI.Cast(GetGame().CreateObject(chestName, crateWorldPos, false, true));
+            crate = EntityAI.Cast(GetGame().CreateObjectEx(chestName, crateWorldPos, ECE_NOLIFETIME | ECE_SETUP));
             if (crate)
             {
                 crate.SetPosition(crateWorldPos);
                 crate.SetOrientation(crateWorldOri);
                 crate.Update();
+
+                // Freeze the crate so it doesn't fall through the container floor if physics glitch
+                dBodyActive(crate, ActiveState.INACTIVE);
+
                 FillLootCrate(crate, tier);
             }
         }
@@ -1542,7 +1544,7 @@ class SDN_ContainerEventManager
         }
 
         SpawnZombies(newEvent, kType, eventID);
-        if (!isRestoration) SpawnSceneObjects(newEvent, containerObj.GetPosition(), containerObj.GetOrientation());
+        if (!isRestoration) SpawnSceneObjects(newEvent, containerObj.GetPosition(), containerObj.GetOrientation(), containerObj);
 
         m_ActiveEvents.Insert(newEvent);
 
@@ -1555,38 +1557,28 @@ class SDN_ContainerEventManager
     }
 
 
-    void SpawnSceneObjects(ActiveEventInstance evt, vector basePos, vector baseOri)
+    void SpawnSceneObjects(ActiveEventInstance evt, vector basePos, vector baseOri, EntityAI containerObj)
     {
-        if (!m_SceneTemplate) return;
-
-        vector transform[4];
-        Math3D.YawPitchRollMatrix(baseOri, transform);
-        transform[3] = basePos;
+        if (!m_SceneTemplate || !containerObj) return;
 
         foreach (SDN_SceneObjectTemplate tmpl : m_SceneTemplate)
         {
             vector localPos = tmpl.OffsetPos;
 
-            // Transform local coordinates into world space coordinates using the container's transformation matrix
-            vector worldPos = localPos.Multiply4(transform);
+            // Use native Enfusion engine ModelToWorld for perfect local-to-global mapping
+            vector worldPos = containerObj.ModelToWorld(localPos);
 
-            // Apply the container's full orientation (Yaw, Pitch, Roll) and add the local Yaw offset.
-            // This ensures items inside the container perfectly align with the container's shelves/floor
-            // even if the container is tilted on a hill.
             vector worldOri = baseOri;
             worldOri[0] = worldOri[0] + tmpl.OffsetOri[0];
 
             Object obj = null;
             if (tmpl.ClassName.Contains(".p3d"))
             {
-                // Revert to native DayZ Editor method for raw p3d files, it handles networking and collision natively.
                 obj = GetGame().CreateStaticObjectUsingP3D(tmpl.ClassName, worldPos, worldOri, 1.0, false);
             }
             else
             {
-                // Force DayZ to create the standard objects properly.
-                obj = GetGame().CreateObjectEx(tmpl.ClassName, worldPos, ECE_NOLIFETIME | ECE_SETUP | ECE_CREATEPHYSICS);
-                if (!obj) obj = GetGame().CreateObject(tmpl.ClassName, worldPos, false, true);
+                obj = GetGame().CreateObjectEx(tmpl.ClassName, worldPos, ECE_NOLIFETIME | ECE_SETUP);
             }
 
             if (obj)
@@ -1597,6 +1589,14 @@ class SDN_ContainerEventManager
                     obj.SetOrientation(worldOri);
                 }
                 obj.Update();
+
+                // Disable physics interaction for decorative items (cars, ammo boxes) so they act as pure static scene
+                if (obj.IsInherited(ItemBase))
+                {
+                    ItemBase ib = ItemBase.Cast(obj);
+                    ib.SetTakeable(false);
+                    dBodyActive(obj, ActiveState.INACTIVE);
+                }
 
                 evt.SceneObjects.Insert(obj);
             }
