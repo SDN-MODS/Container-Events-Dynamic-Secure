@@ -1595,11 +1595,6 @@ class SDN_ContainerEventManager
             {
                 obj = GetGame().CreateObject(tmpl.ClassName, worldPos, false, true);
             }
-            }
-            else
-            {
-                obj = GetGame().CreateObject(tmpl.ClassName, worldPos, false, true);
-            }
 
             if (obj)
             {
@@ -1610,7 +1605,6 @@ class SDN_ContainerEventManager
                 evt.SceneObjects.Insert(obj);
             }
         }
-    }
     }
 
     void CheckActiveEvents(float delta)
