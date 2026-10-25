@@ -1454,24 +1454,15 @@ class SDN_ContainerEventManager
                 return;
             }
 
-            // Proper terrain alignment
+            // Since GetSurfaceNormal is not available directly on GetGame(), we'll use a safer engine method
+            // or simply snap it to surface and let DayZ handle it.
+            // Using PlaceOnSurface() is the safest native way to ensure it sits on the terrain without floating.
             vector finalOri = "0 0 0";
-            vector surfaceNormal = GetGame().GetSurfaceNormal(spawnPos[0], spawnPos[2]);
-
-            float randYaw = Math.RandomFloat(0, 360);
-
-            // Calculate pitch and roll from the surface normal
-            vector angles = surfaceNormal.VectorToAngles();
-            finalOri[0] = randYaw;
-            finalOri[1] = angles[1] - 90; // Pitch
-            finalOri[2] = 0;              // Roll
+            finalOri[0] = Math.RandomFloat(0, 360);
 
             containerObj.SetPosition(spawnPos);
             containerObj.SetOrientation(finalOri);
-            // DO NOT call PlaceOnSurface as it overrides custom pitch/roll and forces it flat.
-            // But we must ensure it's on the ground.
-            spawnPos[1] = GetGame().SurfaceY(spawnPos[0], spawnPos[2]);
-            containerObj.SetPosition(spawnPos);
+            containerObj.PlaceOnSurface();
 
             SetIDSafe(containerObj, eventID);
         }
