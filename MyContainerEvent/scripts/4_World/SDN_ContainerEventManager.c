@@ -1500,18 +1500,13 @@ class SDN_ContainerEventManager
 
             vector transform[4];
             Math3D.YawPitchRollMatrix(containerObj.GetOrientation(), transform);
-            transform[3] = spawnPos;
+            transform[3] = containerObj.GetPosition(); // FIX: Use container center, not ground level
 
             vector crateWorldPos = crateOffsetPos.Multiply4(transform);
 
-            // Fix for crate sinking into ground:
-            // Since the main container snaps to the ground dynamically, negative height offsets from the editor
-            // (which likely had the container floating) will push the box underground.
-            // We just force the box to sit exactly on the terrain surface.
-            crateWorldPos[1] = GetGame().SurfaceY(crateWorldPos[0], crateWorldPos[2]);
-
-            vector crateWorldOri = crateOffsetOri;
-            crateWorldOri[0] = crateWorldOri[0] + containerObj.GetOrientation()[0];
+            // Remove the SurfaceY clamp so the crate perfectly aligns inside the container at the correct height
+            vector crateWorldOri = containerObj.GetOrientation();
+            crateWorldOri[0] = crateWorldOri[0] + crateOffsetOri[0];
 
             crate = EntityAI.Cast(GetGame().CreateObject(chestName, crateWorldPos, false, true));
             if (crate)
@@ -1547,7 +1542,7 @@ class SDN_ContainerEventManager
         }
 
         SpawnZombies(newEvent, kType, eventID);
-        if (!isRestoration) SpawnSceneObjects(newEvent, spawnPos, containerObj.GetOrientation());
+        if (!isRestoration) SpawnSceneObjects(newEvent, containerObj.GetPosition(), containerObj.GetOrientation());
 
         m_ActiveEvents.Insert(newEvent);
 
@@ -1571,16 +1566,15 @@ class SDN_ContainerEventManager
         foreach (SDN_SceneObjectTemplate tmpl : m_SceneTemplate)
         {
             vector localPos = tmpl.OffsetPos;
-            vector worldPos = "0 0 0";
 
             // Transform local coordinates into world space coordinates using the container's transformation matrix
-            worldPos = localPos.Multiply4(transform);
+            vector worldPos = localPos.Multiply4(transform);
 
-            // The orientation is relative to the container. A simple addition works for basic Euler rotations
-            // but ideally we should combine rotation matrices if dealing with complex pitch/roll.
-            // For simple Editor placements (Yaw mostly), adding is sufficient for standard objects.
-            vector worldOri = tmpl.OffsetOri;
-            worldOri[0] = worldOri[0] + baseOri[0];
+            // Apply the container's full orientation (Yaw, Pitch, Roll) and add the local Yaw offset.
+            // This ensures items inside the container perfectly align with the container's shelves/floor
+            // even if the container is tilted on a hill.
+            vector worldOri = baseOri;
+            worldOri[0] = worldOri[0] + tmpl.OffsetOri[0];
 
             Object obj = null;
             if (tmpl.ClassName.Contains(".p3d"))
@@ -1590,15 +1584,13 @@ class SDN_ContainerEventManager
             }
             else
             {
-                // Force DayZ to create the standard objects (like StorageBox_Wooden, AmmoBox_556x45_20Rnd, etc.) properly.
-                // Using CreateObjectEx to ensure we can specify flags, but standard CreateObject works too.
-                obj = GetGame().CreateObjectEx(tmpl.ClassName, worldPos, ECE_PLACE_ON_SURFACE | ECE_NOLIFETIME);
+                // Force DayZ to create the standard objects properly.
+                obj = GetGame().CreateObjectEx(tmpl.ClassName, worldPos, ECE_NOLIFETIME | ECE_SETUP | ECE_CREATEPHYSICS);
                 if (!obj) obj = GetGame().CreateObject(tmpl.ClassName, worldPos, false, true);
             }
 
             if (obj)
             {
-                // For p3d objects created with CreateStaticObjectUsingP3D, position and orientation are already set.
                 if (!tmpl.ClassName.Contains(".p3d"))
                 {
                     obj.SetPosition(worldPos);
