@@ -1068,203 +1068,71 @@ class CfgVehicles
 		model="MyContainerEvent\data\SDN_Light.p3d";
 	};
 
-    class SDN_Static_dz_weapons_ammunition_556_looserounds_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/weapons/ammunition/556_looserounds.p3d";
-    };
 
-    class SDN_Static_dz_weapons_ammunition_9x39_looserounds_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/weapons/ammunition/9x39_looserounds.p3d";
-    };
 
-    class SDN_Static_dz_structures_wrecks_vehicles_wreck_decal_small1_nolc_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/structures/wrecks/vehicles/wreck_decal_small1_nolc.p3d";
-    };
 
-    class SDN_Static_dz_structures_takistan_wrecks_wheeled_wreck_pickup01_armed_tk_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/structures_takistan/wrecks/wheeled/wreck_pickup01_armed_tk.p3d";
-    };
 
-    class SDN_Static_dz_vehicles_wheeled_truck_01_proxy_truck_01_wheeldouble_ruined_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/vehicles/wheeled/truck_01/proxy/truck_01_wheeldouble_ruined.p3d";
-    };
 
-    class SDN_Static_dz_structures_wrecks_vehicles_wreck_uaz_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/structures/wrecks/vehicles/wreck_uaz.p3d";
-    };
 
-    class SDN_Static_dz_weapons_ammunition_9mm_looserounds_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/weapons/ammunition/9mm_looserounds.p3d";
-    };
 
-    class SDN_Static_dz_weapons_ammunition_762_20roundbox_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/weapons/ammunition/762_20roundbox.p3d";
-    };
 
-    class SDN_Static_dz_structures_takistan_wrecks_wheeled_wreck_lr_armed_tk_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/structures_takistan/wrecks/wheeled/wreck_lr_armed_tk.p3d";
-    };
 
-    class SDN_Static_dz_weapons_ammunition_40mm_grenade_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/weapons/ammunition/40mm_grenade.p3d";
-    };
 
-    class SDN_Static_dz_weapons_ammunition_00buck_10roundbox_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/weapons/ammunition/00buck_10roundbox.p3d";
-    };
 
-    class SDN_Static_dz_weapons_firearms_m14_m14_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/weapons/firearms/m14/m14.p3d";
-    };
 
-    class SDN_Static_dz_vehicles_wheeled_offroad_02_proxy_offroad_02_wheel_destroyed_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/vehicles/wheeled/offroad_02/proxy/offroad_02_wheel_destroyed.p3d";
-    };
 
-    class SDN_Static_dz_weapons_firearms_svd_svd_old_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/weapons/firearms/svd/svd_old.p3d";
-    };
 
-    class SDN_Static_dz_structures_wrecks_vehicles_wreck_decal_small2_nolc_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/structures/wrecks/vehicles/wreck_decal_small2_nolc.p3d";
-    };
 
-    class SDN_Static_dz_weapons_firearms_sv98_sv98_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/weapons/firearms/sv98/sv98.p3d";
-    };
 
-    class SDN_Static_dz_weapons_ammunition_9mm_25rnd_box_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/weapons/ammunition/9mm_25rnd_box.p3d";
-    };
 
-    class SDN_Static_dz_structures_takistan_wrecks_wheeled_wreck_truck02_green_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/structures_takistan/wrecks/wheeled/wreck_truck02_green.p3d";
-    };
 
-    class SDN_Static_dz_structures_takistan_wrecks_wheeled_wreck_trailer_single_container_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/structures_takistan/wrecks/wheeled/wreck_trailer_single_container.p3d";
-    };
 
-    class SDN_Static_dz_vehicles_wheeled_truck_01_proxy_truck_01_wheel_ruined_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/vehicles/wheeled/truck_01/proxy/truck_01_wheel_ruined.p3d";
-    };
 
-    class SDN_Static_dz_weapons_ammunition_762x39_20roundbox_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/weapons/ammunition/762x39_20roundbox.p3d";
-    };
 
-    class SDN_Static_dz_weapons_ammunition_556_20roundbox_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/weapons/ammunition/556_20roundbox.p3d";
-    };
 
-    class SDN_Static_dz_structures_military_misc_misc_gunrack_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/structures/military/misc/misc_gunrack.p3d";
-    };
 
-    class SDN_Static_dz_structures_wrecks_vehicles_wreck_decal_small2_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/structures/wrecks/vehicles/wreck_decal_small2.p3d";
-    };
 
-    class SDN_Static_dz_weapons_ammunition_545x39_20roundbox_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/weapons/ammunition/545x39_20roundbox.p3d";
-    };
 
-    class SDN_Static_dz_weapons_firearms_svd_svd_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/weapons/firearms/svd/svd.p3d";
-    };
 
-    class SDN_Static_dz_structures_furniture_cases_paperbox_paperbox_01_small_closed_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/structures/furniture/cases/paperbox/paperbox_01_small_closed.p3d";
-    };
 
-    class SDN_Static_dz_weapons_ammunition_762x39_looserounds_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/weapons/ammunition/762x39_looserounds.p3d";
-    };
 
-    class SDN_Static_dz_weapons_ammunition_308win_looserounds_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/weapons/ammunition/308win_looserounds.p3d";
-    };
 
-    class SDN_Static_dz_gear_tools_shippingcontainerkeys_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/gear/tools/shippingcontainerkeys.p3d";
-    };
 
-    class SDN_Static_dz_weapons_ammunition_12ga_00buck_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/weapons/ammunition/12ga_00buck.p3d";
-    };
 
-    class SDN_Static_dz_structures_bliss_underground_storage_proxy_ammoboxes_single_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/structures_bliss/underground/storage/proxy/ammoboxes_single.p3d";
-    };
 
-    class SDN_Static_dz_weapons_ammunition_762_looserounds_p3d: HouseNoDestruct
-    {
-        scope=1;
-        model="dz/weapons/ammunition/762_looserounds.p3d";
-    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class SDN_P_contaminated_area_gas_grenade: HouseNoDestruct
 	{
 		scope=1;
