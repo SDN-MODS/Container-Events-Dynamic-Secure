@@ -59,7 +59,7 @@ modded class ShippingContainerKeys_ColorBase
 // Precisamos manter individual pois eles não compartilham uma classe base acessível via script fácil.
 
 
-modded class SDN_Test_ContainerBase
+class SDN_Test_ContainerBase extends ContainerLockedBase
 {
     protected int m_SDN_EventID = 0;
 
