@@ -1073,7 +1073,6 @@ class CfgVehicles
 		model="MyContainerEvent\data\SDN_Light.p3d";
 	};
 
-	class HouseNoDestruct;
 	class Inventory_Base;
 	class SeaChest;
 	class BaseBuildingBase: Inventory_Base
