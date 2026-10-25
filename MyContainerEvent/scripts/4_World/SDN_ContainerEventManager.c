@@ -183,13 +183,6 @@ class SDN_ContainerEventManager
             return;
         }
 
-        SDN_Test_ContainerBase testCont = SDN_Test_ContainerBase.Cast(obj);
-        if (testCont)
-        {
-            testCont.SetSDNEventID(id);
-            return;
-        }
-
         Land_ContainerLocked_Blue_DE blue = Land_ContainerLocked_Blue_DE.Cast(obj);
 
         if (blue)
@@ -1205,7 +1198,7 @@ class SDN_ContainerEventManager
         if (roll < currentChance)
         {
             tier = 1;
-            cType = "SDN_Test_ContainerBase";
+            cType = "Land_ContainerLocked_Blue_DE";
             kType = "ShippingContainerKeys_Blue";
         }
         else
@@ -1215,7 +1208,7 @@ class SDN_ContainerEventManager
             if (roll < currentChance)
             {
                 tier = 2;
-                cType = "SDN_Test_ContainerBase";
+                cType = "Land_ContainerLocked_Yellow_DE";
                 kType = "ShippingContainerKeys_Yellow";
             }
             else
@@ -1225,13 +1218,13 @@ class SDN_ContainerEventManager
                 if (roll < currentChance)
                 {
                     tier = 3;
-                    cType = "SDN_Test_ContainerBase";
+                    cType = "Land_ContainerLocked_Orange_DE";
                     kType = "ShippingContainerKeys_Orange";
                 }
                 else
                 {
                     tier = 4;
-                    cType = "SDN_Test_ContainerBase";
+                    cType = "Land_ContainerLocked_Red_DE";
                     kType = "ShippingContainerKeys_Red";
                 }
             }
@@ -1284,9 +1277,6 @@ class SDN_ContainerEventManager
                     Log(" Container found (Safe Start)! Reconnecting event at " + loc.Name);
                     
                     // Retrieve existing ID
-                    SDN_Test_ContainerBase testCont = SDN_Test_ContainerBase.Cast(containerObj);
-                    if (testCont) eventID = testCont.GetSDNEventID();
-
                     Land_ContainerLocked_Blue_DE blue = Land_ContainerLocked_Blue_DE.Cast(containerObj);
                     if (blue) eventID = blue.GetSDNEventID();
                     
