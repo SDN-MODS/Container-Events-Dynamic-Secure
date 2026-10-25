@@ -1494,7 +1494,7 @@ class SDN_ContainerEventManager
         if (!crate)
         {
             // Spawn the loot crate based on the user's exact Editor layout offset
-            vector crateOffsetPos = "-0.5786 -1.0843 -0.0459";
+vector crateOffsetPos = "-0.5786 -1.0843 -0.0459";
             vector crateOffsetOri = "-90.9489 0 0";
 
             vector transform[4];
@@ -1502,6 +1502,12 @@ class SDN_ContainerEventManager
             transform[3] = spawnPos;
 
             vector crateWorldPos = crateOffsetPos.Multiply4(transform);
+
+            // Fix for crate sinking into ground:
+            // -1.0843 is likely a negative offset derived from the editor because the container center is high.
+            // Let's ensure it doesn't clip below surface.
+            crateWorldPos[1] = Math.Max(crateWorldPos[1], GetGame().SurfaceY(crateWorldPos[0], crateWorldPos[2]));
+
             vector crateWorldOri = crateOffsetOri;
             crateWorldOri[0] = crateWorldOri[0] + containerObj.GetOrientation()[0];
 
@@ -1577,14 +1583,13 @@ class SDN_ContainerEventManager
             Object obj = null;
             if (tmpl.ClassName.Contains(".p3d"))
             {
-                // To make raw p3ds visible to clients, we must use a dummy class or ECE_SETUP
-                // ECE_CREATEPHYSICS makes it solid, ECE_UPDATEPATHGRAPH is good.
-                // We drop ECE_PLACE_ON_SURFACE so it respects the exact Z height from the offset!
                 obj = GetGame().CreateObjectEx(tmpl.ClassName, worldPos, ECE_SETUP | ECE_CREATEPHYSICS | ECE_UPDATEPATHGRAPH | ECE_NOLIFETIME);
             }
             else
             {
-                obj = GetGame().CreateObject(tmpl.ClassName, worldPos, false, true);
+                // We use CreateObjectEx here too just to be safe with ECE_NOLIFETIME
+                obj = GetGame().CreateObjectEx(tmpl.ClassName, worldPos, ECE_NOLIFETIME);
+                if (!obj) obj = GetGame().CreateObject(tmpl.ClassName, worldPos, false, true);
             }
 
             if (obj)
