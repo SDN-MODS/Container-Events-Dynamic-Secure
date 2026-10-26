@@ -321,7 +321,7 @@ class SDN_ContainerEventManager
         m_Config.ChanceOrange = 15;
         m_Config.ChanceRed = 5;
 
-        m_Config.LootContainerObject = "CONTAINER_Chest";
+        m_Config.LootContainerObject = "StorageBox_Wooden";
 
         m_Config.TitleSpawn = "NEW EVENT";
         m_Config.TitleActive = "EVENT ACTIVATED";
@@ -933,86 +933,73 @@ class SDN_ContainerEventManager
     void InitSceneTemplate()
     {
         m_SceneTemplate = new array<ref SDN_SceneObjectTemplate>;
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SV98", "0.9102 -0.7076 2.2514", "-2.3318 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SV98", "0.6302 -0.7076 2.2514", "-2.3318 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SV98", "0.9002 -0.7076 2.1514", "-2.3318 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SV98", "0.6202 -0.7076 2.1514", "-2.3318 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SV98", "0.8902 -0.7076 2.0514", "-2.3318 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SV98", "0.6102 -0.7076 2.0514", "-2.3318 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SDN_P_smoke_small_barrel_01", "3.4502 -1.5036 -5.0486", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_556x45_20Rnd", "0.0502 -1.0946 1.7514", "9.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_556x45_20Rnd", "-0.0398 -1.0826 1.4514", "22.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_556x45_20Rnd", "-7.6498 -2.3606 1.4514", "-60.2058 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_Misc_Gunrack", "0.6502 -0.7476 1.8514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SVD", "0.6002 -0.7096 1.7514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SVD", "0.3302 -0.7096 1.6514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SVD", "0.5902 -0.7096 1.6514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SVD", "0.3202 -0.7096 1.5514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("M14", "0.8802 -0.6486 1.5514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("M14", "0.8702 -0.6486 1.6514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("M14", "0.8802 -0.6486 1.7514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_Wreck_Decal_Small2_NoLC", "0.9702 -2.4596 4.5514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Offroad_02_Wheel_Ruined", "2.4402 -2.0946 3.7514", "-18.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SDN_P_smoke_medium_house_01", "3.6702 -1.6196 -8.2486", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_762x39", "0.2102 -1.5196 0.7514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_12gaPellets", "-0.5698 0.1484 2.6514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_12gaPellets", "-0.7798 0.1454 2.6514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("FireplaceLight", "1.1002 -0.9046 -8.3486", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("FireplaceLight", "3.3702 -1.3766 -5.0486", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Land_Wreck_Truck02_Green", "0.4202 -2.4566 -5.1486", "-102.9060 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_556x45", "0.1302 -1.0936 1.0514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_556x45", "0.1202 -1.0766 0.6514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_556x45", "0.1202 -1.0766 0.6514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Land_Wreck_LR_Armed_TK", "2.3302 -2.5506 5.4514", "-27.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Land_Wreck_Pickup01_Armed_TK", "2.0602 -1.4316 -9.8486", "-156.3410 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_9x39AP", "-0.2598 -1.0766 1.5514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_9x39AP", "-0.8298 -1.0536 1.7514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_Wreck_Decal_Small1_NoLC", "3.9502 -2.4576 -3.9486", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_Wreck_Decal_Small1_NoLC", "3.6502 -2.4476 -10.1486", "18.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_762x39_20Rnd", "-0.1498 -1.0396 1.5514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_762x39_20Rnd", "-0.4798 -0.2316 0.6514", "-56.2058 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_762x39_20Rnd", "-0.6598 -0.2316 0.4514", "-56.2058 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_762x39_20Rnd", "3.3102 -2.3036 5.7514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SVD_Wooden", "0.6002 -0.7246 1.5514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SVD_Wooden", "0.3302 -0.7246 1.4514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_00buck_10rnd", "-0.8398 0.1924 2.5514", "71.0535 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_00buck_10rnd", "-0.7398 -0.2326 0.4514", "-56.2058 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_00buck_10rnd", "-0.8798 0.1914 2.5514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_9x19", "-0.2898 -1.0726 2.4514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_9x19_25rnd", "-0.5098 -1.0266 1.0514", "18.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_9x19_25rnd", "-0.1798 -1.0216 1.6514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SDN_P_smoke_bonfire", "2.5002 -1.4986 5.2514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_Furniture_PaperBox_01_small_closed", "-0.6698 -0.2726 2.5514", "0.3114 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_Furniture_PaperBox_01_small_closed", "-0.6698 -0.6846 2.5514", "0.3114 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_Furniture_PaperBox_01_small_closed", "-0.6698 -1.0966 2.5514", "0.3114 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SDN_P_fire_small_camp_01_start", "3.6702 -1.6166 -8.2486", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_40mm_Explosive", "-0.0198 -1.0316 0.6514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_308Win", "-0.1098 -1.0646 2.2514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_308Win", "-0.6198 0.1424 2.5514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_308Win", "0.4902 -1.0646 1.8514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SDN_P_fire_tirepile", "1.2602 -0.6236 -8.0486", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("ShippingContainerKeys_Blue", "23.0202 -2.4266 11.4514", "-145.1820 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_545x39_20Rnd", "-0.7398 -1.0366 1.7514", "-172.8750 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_545x39_20Rnd", "-0.6498 0.1454 2.3514", "7.1250 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_545x39_20Rnd", "-0.4398 0.1514 2.5514", "-172.8750 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SDN_P_fire_medium_oven_01", "3.4702 -1.4196 -5.0486", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_762x54_20Rnd", "-0.4198 -0.2776 0.7514", "-56.2058 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_762x54_20Rnd", "-0.4798 0.1794 2.5514", "14.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_762x54_20Rnd", "0.0602 -1.0636 1.6514", "14.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_762x54", "-0.5398 -0.2816 0.6514", "-56.2058 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_762x54", "-0.7398 0.1414 2.4514", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Truck_01_Wheel_Ruined", "0.2302 -2.3366 5.0514", "3.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Truck_01_WheelDouble_Ruined", "-0.2898 -2.1836 4.5514", "135.8900 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_ammoboxes_single", "-0.5998 0.4514 -2.1486", "89.0478 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_ammoboxes_single", "-0.6098 -0.6126 -1.9486", "91.2339 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_ammoboxes_single", "-0.5898 -0.2586 -1.9486", "89.0478 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_ammoboxes_single", "-0.4498 0.9424 -2.1486", "89.0500 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_ammoboxes_single", "-0.6198 0.6274 -0.2486", "-88.9770 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_ammoboxes_single", "-0.5898 0.0964 -1.9486", "89.0478 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_ammoboxes_single", "0.2402 -0.5966 -2.0486", "89.6686 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_Wreck_Trailer_Single_Container", "-0.0398 -2.4556 -0.8486", "0.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Land_Wreck_Uaz", "3.5402 -1.6966 -3.6486", "3.0000 0.0000 0.0000"));
-        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_Wreck_Decal_Small2", "1.3202 3.4184 -7.8486", "0.0000 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SVD_Wooden", "0.2100 1.7250 1.1000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SVD_Wooden", "0.0300 1.7250 0.9000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SV98", "0.1200 1.7420 1.9000", "-32.8303 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SV98", "-0.1200 1.7420 1.8000", "-32.8303 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SV98", "0.1700 1.7420 1.8000", "-32.8303 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SV98", "-0.0700 1.7420 1.7000", "-32.8303 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SV98", "0.2100 1.7420 1.7000", "-32.8303 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SV98", "-0.0300 1.7420 1.6000", "-32.8303 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_9x19", "-1.0200 1.3780 1.5000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_556x45_20Rnd", "-0.3600 1.3550 1.0000", "156.2080 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_556x45_20Rnd", "-0.2900 1.3670 0.7000", "165.9440 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_Furniture_PaperBox_01_small_closed", "-1.4000 2.1770 1.4000", "-30.1871 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_Furniture_PaperBox_01_small_closed", "-1.3900 1.7650 1.4000", "-30.1871 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_Furniture_PaperBox_01_small_closed", "-1.4000 1.3530 1.4000", "-30.1871 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_Misc_Gunrack", "0.1000 1.7020 1.4000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SVD", "0.1100 1.7400 1.3000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SVD", "-0.0700 1.7400 1.1000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SVD", "0.1600 1.7400 1.2000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SVD", "-0.0200 1.7400 1.0000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("M14", "0.4600 1.8020 1.3000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("M14", "0.3900 1.8020 1.4000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("M14", "0.3500 1.8020 1.5000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_40mm_Explosive", "0.1100 1.4190 0.1000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_9x39AP", "-0.5600 1.3730 0.8000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_9x39AP", "-1.1200 1.3960 0.6000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_762x54_20Rnd", "-0.2900 2.1720 0.0000", "99.8791 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_762x54_20Rnd", "-1.2500 2.6300 1.5000", "160.6180 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_762x54_20Rnd", "-0.2900 1.3860 0.9000", "159.7510 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_545x39_20Rnd", "-1.0900 1.4140 0.7000", "158.3860 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_545x39_20Rnd", "-1.3100 2.5960 1.3000", "160.1300 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_545x39_20Rnd", "-1.2300 2.6010 1.5000", "156.6270 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_12gaPellets", "-1.3600 2.5990 1.5000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_12gaPellets", "-1.5400 2.5950 1.4000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_9x19_25rnd", "-0.5100 1.4240 0.2000", "-12.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_9x19_25rnd", "-0.5200 1.4280 0.9000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_00buck_10rnd", "-1.5300 2.6420 1.3000", "40.5550 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_00buck_10rnd", "-0.4100 2.2170 -0.4000", "-86.7043 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_00buck_10rnd", "-1.6000 2.6420 1.3000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_556x45", "0.0700 1.3570 0.5000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_556x45", "0.2200 1.3730 0.2000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_556x45", "0.2500 1.3730 0.1000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_308Win", "-0.7600 1.3860 1.4000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_308Win", "-1.3500 2.5930 1.4000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_308Win", "-0.0800 1.3860 1.4000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_762x39", "0.2500 0.9310 0.3000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_ammoboxes_single", "1.0200 2.9010 -2.6000", "58.5493 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_ammoboxes_single", "0.9300 1.8370 -2.5000", "60.7354 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_ammoboxes_single", "0.9700 2.1920 -2.5000", "58.5493 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_ammoboxes_single", "1.1400 3.3930 -2.5000", "58.5515 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_ammoboxes_single", "0.0700 3.0770 -1.0000", "-119.4750 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_ammoboxes_single", "0.9600 2.5460 -2.5000", "58.5493 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_ammoboxes_single", "1.6900 1.8540 -2.1000", "59.1701 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("StaticObj_Wreck_Trailer_Single_Container", "0.8800 -0.0060 -1.2000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_762x54", "-0.3400 2.1680 -0.2000", "-86.7043 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("Ammo_762x54", "-1.4100 2.5920 1.3000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_762x39_20Rnd", "-0.4600 1.4100 0.8000", "-30.4985 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_762x39_20Rnd", "-0.2700 2.2190 -0.2000", "-86.7043 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("AmmoBox_762x39_20Rnd", "-0.3400 2.2190 -0.4000", "-86.7043 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SV98", "-0.0700 1.7420 1.7000", "-32.8303 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SV98", "-0.0300 1.7420 1.6000", "-32.8303 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SDN_P_fire_medium_camp_01", "6.0800 0.6440 -9.3000", "0.0000 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("FireplaceLight", "3.1000 2.4520 -8.2000", "0.0000 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SDN_P_fire_medium_oven_01", "5.5200 1.2660 -3.5000", "0.0000 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SDN_P_fire_medium_oven_01", "5.5400 0.0040 -4.2000", "0.0000 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SDN_P_smoke_bonfire", "1.7900 1.1760 5.3000", "0.0000 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SDN_P_fire_tirepile", "2.9000 1.8470 -7.9000", "0.0000 0.0000 0.0000"));
+        m_SceneTemplate.Insert(new SDN_SceneObjectTemplate("SDN_P_smoke_small_house_01", "6.1000 0.5650 -2.9000", "0.0000 0.0000 0.0000"));
     }
 
     void LoadConfig()
@@ -1495,10 +1482,8 @@ class SDN_ContainerEventManager
         {
             // Spawn the loot crate based on the user's exact Editor layout offset
 // Offset extracted directly from the XML exported by the DayZ Editor
-            // The DayZ editor sets the container origin in the center, but in-game it might be different.
-            // We use ModelToWorld which is foolproof for local offsets.
-            vector crateOffsetPos = "-0.5798 -1.0846 -0.0486";
-            vector crateOffsetOri = "-90.9489 0 0";
+vector crateOffsetPos = "-0.0100 1.3660 -0.8000";
+            vector crateOffsetOri = "-121.4470 0.0000 0.0000";
 
             // Convert local offset to world space perfectly natively
             vector crateWorldPos = containerObj.ModelToWorld(crateOffsetPos);
@@ -1659,6 +1644,7 @@ class SDN_ContainerEventManager
                 if (isContainerOpen)
                 {
                     evt.IsCompleted = true;
+                    if (evt.LootCrate) evt.LootCrate.SetTakeable(true);
 
                     msg = m_Config.MsgComplete;
 
