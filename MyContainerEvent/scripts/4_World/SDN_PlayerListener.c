@@ -39,6 +39,8 @@ modded class PlayerBase
             }
 
             // Chamada com assinatura INVERTIDA (Tempo primeiro) baseada no seu mod de referência
+            // Restaurando a chamada direta. O mod VPPNotifications provavelmente não tem a flag #ifdef.
+            // Caso dê erro de compilação futuramente por falta do mod, avise o dono do servidor para usar VPP.
             NotificationSystem.AddNotificationExtended(time, title, text, icon);
         }
     }

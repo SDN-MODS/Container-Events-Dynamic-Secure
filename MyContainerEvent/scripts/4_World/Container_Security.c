@@ -5,7 +5,7 @@
 
 // Define a classe do script para o objeto contenedor de loot definido no config.cpp
 // IMPORTANTE: Atualize seu config.cpp para que a classe herde com este exato nome.
-class SDN_Container_Chest extends SeaChest
+class CONTAINER_Chest extends SeaChest
 {
     // --- PROTEÇÕES DE INVENTÁRIO ---
 
