@@ -1492,9 +1492,6 @@ vector crateOriginalPos = "4451.6500 340.3730 10249.9000";
             Math3D.YawPitchRollMatrix(editorOriginOri, editorOriginMat);
             editorOriginMat[3] = editorOriginPos;
 
-            vector invEditorMat[4];
-            Math3D.MatrixInverse4(editorOriginMat, invEditorMat);
-
             vector targetSpawnMat[4];
             Math3D.YawPitchRollMatrix(containerObj.GetOrientation(), targetSpawnMat);
             targetSpawnMat[3] = containerObj.GetPosition();
@@ -1573,9 +1570,6 @@ vector crateOriginalPos = "4451.6500 340.3730 10249.9000";
         vector editorOriginMat[4];
         Math3D.YawPitchRollMatrix(editorOriginOri, editorOriginMat);
         editorOriginMat[3] = editorOriginPos;
-
-        vector invEditorMat[4];
-        Math3D.MatrixInverse4(editorOriginMat, invEditorMat);
 
         // 2. Matriz do Destino (Novo ponto dinâmico no servidor = containerObj)
         vector targetSpawnMat[4];
